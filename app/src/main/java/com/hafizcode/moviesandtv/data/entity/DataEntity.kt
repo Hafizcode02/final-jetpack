@@ -1,4 +1,4 @@
-package com.hafizcode.moviesandtv.data
+package com.hafizcode.moviesandtv.data.entity
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

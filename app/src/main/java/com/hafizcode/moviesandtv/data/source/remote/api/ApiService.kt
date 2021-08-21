@@ -2,6 +2,10 @@ package com.hafizcode.moviesandtv.data.source.remote.api
 
 import com.hafizcode.moviesandtv.BuildConfig
 import com.hafizcode.moviesandtv.data.source.remote.response.*
+import com.hafizcode.moviesandtv.data.source.remote.response.movie.MovieResponse
+import com.hafizcode.moviesandtv.data.source.remote.response.movie.RatedForResponse
+import com.hafizcode.moviesandtv.data.source.remote.response.tv.TVRatedResponse
+import com.hafizcode.moviesandtv.data.source.remote.response.tv.TVResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path

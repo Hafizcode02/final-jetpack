@@ -2,7 +2,7 @@ package com.hafizcode.moviesandtv.ui.detail
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.hafizcode.moviesandtv.data.DataEntity
+import com.hafizcode.moviesandtv.data.entity.DataEntity
 import com.hafizcode.moviesandtv.data.source.MovieRepository
 
 class DetailViewModel(private val movieRepository: MovieRepository) : ViewModel() {

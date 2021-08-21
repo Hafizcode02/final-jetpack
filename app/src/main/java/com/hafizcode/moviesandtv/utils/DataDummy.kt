@@ -1,7 +1,7 @@
 package com.hafizcode.moviesandtv.utils
 
 import com.hafizcode.moviesandtv.R
-import com.hafizcode.moviesandtv.data.DataEntity
+import com.hafizcode.moviesandtv.data.entity.DataEntity
 
 object DataDummy {
 

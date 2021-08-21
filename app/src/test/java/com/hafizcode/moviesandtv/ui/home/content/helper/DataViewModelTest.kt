@@ -3,7 +3,7 @@ package com.hafizcode.moviesandtv.ui.home.content.helper
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import com.hafizcode.moviesandtv.data.DataEntity
+import com.hafizcode.moviesandtv.data.entity.DataEntity
 import com.hafizcode.moviesandtv.data.source.MovieRepository
 import com.hafizcode.moviesandtv.utils.DataDummy
 import com.nhaarman.mockitokotlin2.verify

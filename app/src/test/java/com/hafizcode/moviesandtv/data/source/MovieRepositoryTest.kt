@@ -3,10 +3,10 @@ package com.hafizcode.moviesandtv.data.source
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.hafizcode.moviesandtv.data.source.remote.RemoteDataSource
 import com.hafizcode.moviesandtv.data.source.remote.api.ApiClient
-import com.hafizcode.moviesandtv.data.source.remote.response.MovieResponse
-import com.hafizcode.moviesandtv.data.source.remote.response.RatedForResponse
-import com.hafizcode.moviesandtv.data.source.remote.response.TVRatedResponse
-import com.hafizcode.moviesandtv.data.source.remote.response.TVResponse
+import com.hafizcode.moviesandtv.data.source.remote.response.movie.MovieResponse
+import com.hafizcode.moviesandtv.data.source.remote.response.movie.RatedForResponse
+import com.hafizcode.moviesandtv.data.source.remote.response.tv.TVRatedResponse
+import com.hafizcode.moviesandtv.data.source.remote.response.tv.TVResponse
 import com.hafizcode.moviesandtv.helper.LiveDataTestUtil
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.doAnswer

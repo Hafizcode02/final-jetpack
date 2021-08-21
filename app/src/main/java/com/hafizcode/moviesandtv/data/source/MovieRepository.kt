@@ -2,12 +2,12 @@ package com.hafizcode.moviesandtv.data.source
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.hafizcode.moviesandtv.data.DataEntity
+import com.hafizcode.moviesandtv.data.entity.DataEntity
 import com.hafizcode.moviesandtv.data.source.remote.RemoteDataSource
-import com.hafizcode.moviesandtv.data.source.remote.response.MovieResponse
-import com.hafizcode.moviesandtv.data.source.remote.response.RatedForResponse
-import com.hafizcode.moviesandtv.data.source.remote.response.TVRatedResponse
-import com.hafizcode.moviesandtv.data.source.remote.response.TVResponse
+import com.hafizcode.moviesandtv.data.source.remote.response.movie.MovieResponse
+import com.hafizcode.moviesandtv.data.source.remote.response.movie.RatedForResponse
+import com.hafizcode.moviesandtv.data.source.remote.response.tv.TVRatedResponse
+import com.hafizcode.moviesandtv.data.source.remote.response.tv.TVResponse
 import com.hafizcode.moviesandtv.utils.Helper.convertDate
 import com.hafizcode.moviesandtv.utils.Helper.convertMinutesToHour
 import kotlinx.coroutines.CoroutineScope

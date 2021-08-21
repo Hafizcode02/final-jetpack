@@ -1,7 +1,7 @@
 package com.hafizcode.moviesandtv.data.source
 
 import androidx.lifecycle.LiveData
-import com.hafizcode.moviesandtv.data.DataEntity
+import com.hafizcode.moviesandtv.data.entity.DataEntity
 
 interface MovieDataSource {
     fun getMovies(): LiveData<List<DataEntity>>

@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-parcelize'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -88,6 +89,10 @@ dependencies {
     testImplementation "org.mockito:mockito-core:$mockitoVersion"
     testImplementation "org.mockito:mockito-inline:$mockitoVersion"
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKotlinVersion"
+
+    // Room
+    implementation "androidx.room:room-runtime:$roomRunTimeVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
 
     // Testing
     testImplementation "junit:junit:$junitVersion"

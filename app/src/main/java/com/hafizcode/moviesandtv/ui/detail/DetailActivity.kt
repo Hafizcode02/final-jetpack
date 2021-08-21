@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.hafizcode.moviesandtv.R
-import com.hafizcode.moviesandtv.data.DataEntity
+import com.hafizcode.moviesandtv.data.entity.DataEntity
 import com.hafizcode.moviesandtv.databinding.ActivityDetailBinding
 import com.hafizcode.moviesandtv.utils.Helper.IMAGE_API_ENDPOINT
 import com.hafizcode.moviesandtv.utils.Helper.MOVIE_TYPE

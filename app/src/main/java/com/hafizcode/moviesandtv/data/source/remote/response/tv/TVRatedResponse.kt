@@ -1,4 +1,4 @@
-package com.hafizcode.moviesandtv.data.source.remote.response
+package com.hafizcode.moviesandtv.data.source.remote.response.tv
 
 import com.google.gson.annotations.SerializedName
 

@@ -43,4 +43,7 @@ ext {
     materialVersion = '1.4.0'
     recyclerViewVersion = '1.2.1'
     glideVersion = '4.11.0'
+
+    roomVersion = '2.2.3'
+    roomRunTimeVersion = '2.3.0'
 }
