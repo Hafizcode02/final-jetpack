@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.hafizcode.moviesandtv.data.entity.DataEntity
+import com.hafizcode.moviesandtv.data.entity.MovieEntity
 import com.hafizcode.moviesandtv.databinding.ItemRowBinding
 import com.hafizcode.moviesandtv.utils.Helper.IMAGE_API_ENDPOINT
 import com.hafizcode.moviesandtv.utils.Helper.setImageWithGlide
@@ -11,9 +12,9 @@ import com.hafizcode.moviesandtv.utils.Helper.setImageWithGlide
 class MovieAdapter(private val callback: MovieFragment) :
     RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
-    private val listMovies = ArrayList<DataEntity>()
+    private val listMovies = ArrayList<MovieEntity>()
 
-    fun setMovies(movies: List<DataEntity>?) {
+    fun setMovies(movies: List<MovieEntity>?) {
         if (movies == null) return
         this.listMovies.clear()
         this.listMovies.addAll(movies)
@@ -35,7 +36,7 @@ class MovieAdapter(private val callback: MovieFragment) :
 
     inner class MovieViewHolder(private val binding: ItemRowBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(data: DataEntity) {
+        fun bind(data: MovieEntity) {
             with(binding) {
                 tvTitle.text = data.title
                 setImageWithGlide(
@@ -44,7 +45,7 @@ class MovieAdapter(private val callback: MovieFragment) :
                     imgItemPhoto
                 )
                 itemView.setOnClickListener {
-                    callback.onItemClicked(data)
+                    callback.onItemClicked(data, null)
                 }
             }
         }

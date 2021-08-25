@@ -1,5 +1,6 @@
 package com.hafizcode.moviesandtv.viewmodel
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.hafizcode.moviesandtv.data.source.MovieRepository
@@ -14,9 +15,11 @@ class ViewModelFactory private constructor(private val mMovieRepository: MovieRe
         @Volatile
         private var instance: ViewModelFactory? = null
 
-        fun getInstance(): ViewModelFactory =
+        fun getInstance(context: Context): ViewModelFactory =
             instance ?: synchronized(this) {
-                instance ?: ViewModelFactory(Injection.provideMovieRepository())
+                instance ?: ViewModelFactory(Injection.provideMovieRepository(context)).apply {
+                    instance = this
+                }
             }
     }
 

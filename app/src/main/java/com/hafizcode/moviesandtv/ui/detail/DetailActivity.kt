@@ -35,22 +35,27 @@ class DetailActivity : AppCompatActivity() {
             if (dataType == MOVIE_TYPE) "Detail Movie" else "Detail TV"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        val factory = ViewModelFactory.getInstance()
+        val factory = ViewModelFactory.getInstance(applicationContext)
         val viewModel = ViewModelProvider(this, factory)[DetailViewModel::class.java]
 
-        if (intent.extras != null) {
-            if (dataType.equals(MOVIE_TYPE, true)) {
-                viewModel.getDetailMovie(dataId.toInt()).observe(this, {
-                    Log.d("DATA MOVIE DETAIL", it.toString())
-                    displayContent(it)
-                })
-            } else if (dataType.equals(TV_TYPE, true)) {
-                viewModel.getDetailTV(dataId.toInt()).observe(this, {
-                    Log.d("DATA TV DETAIL", it.toString())
-                    displayContent(it)
-                })
-            }
-        }
+//        if (intent.extras != null) {
+//            if (dataType.equals(MOVIE_TYPE, true)) {
+//                viewModel.setSelectedMovieId(dataId.toInt())
+//                viewModel.detailMovie.observe(this, {
+//                    Log.d("DATA MOVIE DETAIL", it.toString())
+//                    displayContent(it.data)
+//                })
+//                viewModel.getDetailMovie(dataId.toInt()).observe(this, {
+//                    Log.d("DATA MOVIE DETAIL", it.toString())
+//                    displayContent(it)
+//                })
+//            } else if (dataType.equals(TV_TYPE, true)) {
+//                viewModel.getDetailTV(dataId.toInt()).observe(this, {
+//                    Log.d("DATA TV DETAIL", it.toString())
+//                    displayContent(it)
+//                })
+//            }
+//        }
 
     }
 

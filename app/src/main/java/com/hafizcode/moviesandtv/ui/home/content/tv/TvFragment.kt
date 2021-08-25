@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.hafizcode.moviesandtv.data.entity.DataEntity
+import com.hafizcode.moviesandtv.data.entity.MovieEntity
+import com.hafizcode.moviesandtv.data.entity.TVEntity
 import com.hafizcode.moviesandtv.databinding.FragmentTvBinding
 import com.hafizcode.moviesandtv.ui.detail.DetailActivity
 import com.hafizcode.moviesandtv.ui.home.content.helper.DataCallback
@@ -38,7 +40,7 @@ class TvFragment : Fragment(), DataCallback {
             adapter = TvAdapter(this@TvFragment)
         }
 
-        val factory = ViewModelFactory.getInstance()
+        val factory = ViewModelFactory.getInstance(requireActivity())
         activity?.let {
             viewModel = ViewModelProvider(it, factory)[DataViewModel::class.java]
         }
@@ -47,7 +49,7 @@ class TvFragment : Fragment(), DataCallback {
             fragmentTvBinding.rvTv.adapter?.let { adapter ->
                 when (adapter) {
                     is TvAdapter -> {
-                        adapter.run { setTV(listTV) }
+                        adapter.run { setTV(listTV.data) }
                     }
                 }
             }
@@ -55,9 +57,9 @@ class TvFragment : Fragment(), DataCallback {
 
     }
 
-    override fun onItemClicked(data: DataEntity) {
+    override fun onItemClicked(dataMovie: MovieEntity?, dataTV: TVEntity?) {
         val intent = Intent(context, DetailActivity::class.java)
-        intent.putExtra(DetailActivity.DATA_ID, data.id)
+        intent.putExtra(DetailActivity.DATA_ID, dataTV?.id)
         intent.putExtra(DetailActivity.DATA_TYPE, TV_TYPE)
         startActivity(intent)
     }

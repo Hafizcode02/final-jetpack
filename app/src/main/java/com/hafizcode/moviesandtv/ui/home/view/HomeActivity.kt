@@ -19,7 +19,7 @@ class HomeActivity : AppCompatActivity() {
         val activityHomeBinding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(activityHomeBinding.root)
 
-        val factory = ViewModelFactory.getInstance()
+        val factory = ViewModelFactory.getInstance(applicationContext)
         dataViewModel = ViewModelProvider(this, factory)[DataViewModel::class.java]
 
         val sectionPagerAdapter = SectionPagerAdapter(this, supportFragmentManager)
