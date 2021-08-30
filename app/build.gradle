@@ -53,6 +53,7 @@ android {
 dependencies {
 
     // Kotlin
+    //noinspection GradleDependency
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation "androidx.core:core-ktx:$coreVersion"
 
@@ -76,7 +77,6 @@ dependencies {
     // noinspection GradleDependency (Required API 30 for new Version)
     implementation "androidx.activity:activity-ktx:1.2.0"
 
-    implementation 'com.github.bumptech.glide:glide:4.11.0'
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation "com.squareup.retrofit2:converter-gson:2.9.0"
     implementation "com.squareup.okhttp3:logging-interceptor:4.9.0"
@@ -89,14 +89,17 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine_version"
 
     // Mockito
+    //noinspection GradleDependency
     testImplementation "org.mockito:mockito-core:$mockitoVersion"
+    //noinspection GradleDependency
     testImplementation "org.mockito:mockito-inline:$mockitoVersion"
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKotlinVersion"
 
     // Room
     implementation "androidx.room:room-runtime:$roomRunTimeVersion"
     kapt "androidx.room:room-compiler:$roomVersion"
-    implementation "androidx.paging:paging-runtime:$pagingVersion"
+    //noinspection GradleDependency
+    implementation "androidx.paging:paging-runtime-ktx:$pagingVersion"
 
     // Testing
     testImplementation "junit:junit:$junitVersion"
