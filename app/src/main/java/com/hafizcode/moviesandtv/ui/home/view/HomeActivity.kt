@@ -1,5 +1,6 @@
 package com.hafizcode.moviesandtv.ui.home.view
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -8,6 +9,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.hafizcode.moviesandtv.R
 import com.hafizcode.moviesandtv.databinding.ActivityHomeBinding
+import com.hafizcode.moviesandtv.ui.bookmark.view.BookmarkActivity
 import com.hafizcode.moviesandtv.ui.home.content.helper.DataViewModel
 import com.hafizcode.moviesandtv.viewmodel.ViewModelFactory
 import com.synnapps.carouselview.ImageListener
@@ -54,7 +56,7 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.action_to_fav) {
-            Toast.makeText(applicationContext, "TEST", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(applicationContext, BookmarkActivity::class.java))
         }
         return super.onOptionsItemSelected(item)
     }

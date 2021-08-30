@@ -11,4 +11,7 @@ import com.hafizcode.moviesandtv.vo.Resource
 class DataViewModel(private val movieRepository: MovieRepository) : ViewModel() {
     fun getMovies(): LiveData<Resource<List<MovieEntity>>> = movieRepository.getMovies()
     fun getTvs(): LiveData<Resource<List<TVEntity>>> = movieRepository.getTVs()
+
+    fun getBookmarkedMovies(): LiveData<List<MovieEntity>> = movieRepository.getBookmarkedMovies()
+    fun getBookmarkedTVs(): LiveData<List<TVEntity>> = movieRepository.getBookmarkedTVs()
 }

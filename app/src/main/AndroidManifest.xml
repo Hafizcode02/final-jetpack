@@ -8,10 +8,11 @@
         android:allowBackup="true"
         android:icon="@mipmap/logo_tmdb"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/logo_tmdb_round"
         android:supportsRtl="true"
-        android:largeHeap="true"
         android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar">
+        <activity android:name=".ui.bookmark.view.BookmarkActivity"></activity>
         <activity android:name=".ui.home.view.HomeActivity" />
         <activity
             android:name=".ui.detail.DetailActivity"

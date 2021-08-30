@@ -18,4 +18,5 @@
     <string name="no_description">No Description</string>
     <string name="favorite">Favorite</string>
     <string name="favorite_bookmarked">Favorite Bookmarked</string>
+    <string name="favorite_list">FAVORITE LIST</string>
 </resources>
