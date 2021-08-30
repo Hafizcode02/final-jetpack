@@ -2,6 +2,9 @@ package com.hafizcode.moviesandtv.ui.home.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.hafizcode.moviesandtv.R
 import com.hafizcode.moviesandtv.databinding.ActivityHomeBinding
@@ -18,6 +21,9 @@ class HomeActivity : AppCompatActivity() {
 
         val activityHomeBinding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(activityHomeBinding.root)
+
+        setSupportActionBar(activityHomeBinding.toolBar)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
 
         val factory = ViewModelFactory.getInstance(applicationContext)
         dataViewModel = ViewModelProvider(this, factory)[DataViewModel::class.java]
@@ -39,5 +45,17 @@ class HomeActivity : AppCompatActivity() {
 
         activityHomeBinding.carouselView.pageCount = carouselImages.size
         activityHomeBinding.carouselView.setImageListener(imageListener)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_home, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.action_to_fav) {
+            Toast.makeText(applicationContext, "TEST", Toast.LENGTH_SHORT).show()
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
