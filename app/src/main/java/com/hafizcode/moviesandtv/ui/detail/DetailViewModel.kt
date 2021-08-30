@@ -1,33 +1,29 @@
 package com.hafizcode.moviesandtv.ui.detail
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
-import com.hafizcode.moviesandtv.data.entity.DataEntity
 import com.hafizcode.moviesandtv.data.entity.MovieEntity
 import com.hafizcode.moviesandtv.data.entity.TVEntity
 import com.hafizcode.moviesandtv.data.source.MovieRepository
 import com.hafizcode.moviesandtv.utils.Helper.MOVIE_TYPE
+import com.hafizcode.moviesandtv.utils.Helper.TV_TYPE
 import com.hafizcode.moviesandtv.vo.Resource
 
 class DetailViewModel(private val movieRepository: MovieRepository) : ViewModel() {
-    private val selectedIdMovie = MutableLiveData<Int>()
-    private val selectedIdTV = MutableLiveData<Int>()
-    private val typeData = MutableLiveData<String>()
 
-    fun setSelectedMovieId(id: Int) {
-        this.selectedIdMovie.value = id
-    }
+    private lateinit var detailMovie: LiveData<Resource<MovieEntity>>
+    private lateinit var detailTV: LiveData<Resource<TVEntity>>
 
-    fun selectedTVId(id: Int) {
-        this.selectedIdTV.value = id
-    }
-
-    var detailMovie: LiveData<Resource<MovieEntity>> =
-        Transformations.switchMap(selectedIdMovie) { id ->
-            selectedIdMovie.value?.let { movieRepository.getMovieDetail(id) }
+    fun setData(id: Int, type: String) {
+        when (type) {
+            MOVIE_TYPE -> {
+                detailMovie = movieRepository.getMovieDetail(id)
+            }
+            TV_TYPE -> {
+                detailTV = movieRepository.getTVDetail(id)
+            }
         }
+    }
 
     fun setBookmarkedMovie() {
         val movie = detailMovie.value
@@ -40,11 +36,6 @@ class DetailViewModel(private val movieRepository: MovieRepository) : ViewModel(
         }
     }
 
-    var detailTV: LiveData<Resource<TVEntity>> =
-        Transformations.switchMap(selectedIdTV) { id ->
-            selectedIdTV.value?.let { movieRepository.getTVDetail(id) }
-        }
-
     fun setBookmarkedTV() {
         val tv = detailTV.value
         if (tv != null) {
@@ -55,4 +46,7 @@ class DetailViewModel(private val movieRepository: MovieRepository) : ViewModel(
             }
         }
     }
+
+    fun detailMovie() = detailMovie
+    fun detailTV() = detailTV
 }

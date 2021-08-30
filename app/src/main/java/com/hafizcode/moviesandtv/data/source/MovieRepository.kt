@@ -1,5 +1,6 @@
 package com.hafizcode.moviesandtv.data.source
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import com.hafizcode.moviesandtv.data.entity.MovieEntity
 import com.hafizcode.moviesandtv.data.entity.TVEntity
@@ -48,6 +49,7 @@ class MovieRepository private constructor(
             }
 
             override fun createCall(): LiveData<ApiResponse<List<MovieResponse>>> {
+                Log.d("TEST", "ISWORKHERE")
                 return remoteDataSource.getMovies()
             }
 
@@ -57,6 +59,12 @@ class MovieRepository private constructor(
                     val movie = MovieEntity(
                         id = response.id.toString(),
                         title = response.title.toString(),
+                        description = "",
+                        genre = "",
+                        releasedYear = "",
+                        ratingFor = "",
+                        ratingFilm = "",
+                        playedHour = "",
                         imgPoster = response.posterPath.toString()
                     )
                     movieList.add(movie)
@@ -67,6 +75,9 @@ class MovieRepository private constructor(
     }
 
     override fun getMovieDetail(movieId: Int): LiveData<Resource<MovieEntity>> {
+
+        ratedForCertification = ""
+        genresData = ""
 
         val dataRated = remoteDataSource.getMovieDetailRatedFor(movieId)
         dataRated.value?.body?.results?.forEach {
@@ -82,7 +93,7 @@ class MovieRepository private constructor(
             }
 
             override fun shouldFetch(data: MovieEntity?): Boolean {
-                return data == null
+                return data != null && data.description == ""
             }
 
             override fun createCall(): LiveData<ApiResponse<MovieResponse>> {
@@ -95,15 +106,15 @@ class MovieRepository private constructor(
                     else if (index >= 1) genresData += ", ${value?.name}"
                 }
                 val movie = MovieEntity(
-                    data.id.toString(),
-                    data.title,
-                    data.overview,
-                    genresData,
-                    convertDate(data.releaseDate.toString()),
-                    ratedForCertification,
-                    data.voteAverage.toString(),
-                    data.runtime?.let { convertMinutesToHour(it) },
-                    data.posterPath.toString()
+                    id = data.id.toString(),
+                    title = data.title,
+                    description = data.overview,
+                    genre = genresData,
+                    releasedYear = convertDate(data.releaseDate.toString()),
+                    ratingFor = ratedForCertification,
+                    ratingFilm = data.voteAverage.toString(),
+                    playedHour = data.runtime?.let { convertMinutesToHour(it) },
+                    imgPoster = data.posterPath.toString()
                 )
                 localDataSource.updateMovie(movie)
             }
@@ -130,6 +141,12 @@ class MovieRepository private constructor(
                     val tv = TVEntity(
                         id = response.id.toString(),
                         title = response.name.toString(),
+                        description = "",
+                        genre = "",
+                        releasedYear = "",
+                        ratingFor = "",
+                        ratingFilm = "",
+                        playedHour = "",
                         imgPoster = response.posterPath.toString()
                     )
                     tvList.add(tv)
@@ -140,6 +157,9 @@ class MovieRepository private constructor(
     }
 
     override fun getTVDetail(tvId: Int): LiveData<Resource<TVEntity>> {
+
+        ratedForCertification = ""
+        genresData = ""
 
         val dataRated = remoteDataSource.getTVDetailRatedFor(tvId)
         dataRated.value?.body?.results?.forEach {
@@ -155,7 +175,7 @@ class MovieRepository private constructor(
             }
 
             override fun shouldFetch(data: TVEntity?): Boolean {
-                return data == null
+                return data != null && data.description == ""
             }
 
             override fun createCall(): LiveData<ApiResponse<TVResponse>> {
@@ -177,15 +197,15 @@ class MovieRepository private constructor(
                     }
                 }
                 val tv = TVEntity(
-                    data.id.toString(),
-                    data.name,
-                    data.overview,
-                    genresData,
-                    convertDate(data.firstAirDate.toString()),
-                    ratedForCertification,
-                    data.voteAverage.toString(),
-                    playedHourTV,
-                    data.posterPath.toString()
+                    id = data.id.toString(),
+                    title = data.name,
+                    description = data.overview,
+                    genre = genresData,
+                    releasedYear = convertDate(data.firstAirDate.toString()),
+                    ratingFor = ratedForCertification,
+                    ratingFilm = data.voteAverage.toString(),
+                    playedHour = playedHourTV,
+                    imgPoster = data.posterPath.toString()
                 )
                 localDataSource.updateTV(tv)
             }

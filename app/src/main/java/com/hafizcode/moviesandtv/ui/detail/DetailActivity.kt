@@ -7,12 +7,14 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.hafizcode.moviesandtv.R
-import com.hafizcode.moviesandtv.data.entity.DataEntity
+import com.hafizcode.moviesandtv.data.entity.MovieEntity
+import com.hafizcode.moviesandtv.data.entity.TVEntity
 import com.hafizcode.moviesandtv.databinding.ActivityDetailBinding
 import com.hafizcode.moviesandtv.utils.Helper.IMAGE_API_ENDPOINT
 import com.hafizcode.moviesandtv.utils.Helper.MOVIE_TYPE
 import com.hafizcode.moviesandtv.utils.Helper.TV_TYPE
 import com.hafizcode.moviesandtv.viewmodel.ViewModelFactory
+import com.hafizcode.moviesandtv.vo.Status
 
 class DetailActivity : AppCompatActivity() {
     companion object {
@@ -38,28 +40,74 @@ class DetailActivity : AppCompatActivity() {
         val factory = ViewModelFactory.getInstance(applicationContext)
         val viewModel = ViewModelProvider(this, factory)[DetailViewModel::class.java]
 
-//        if (intent.extras != null) {
-//            if (dataType.equals(MOVIE_TYPE, true)) {
-//                viewModel.setSelectedMovieId(dataId.toInt())
-//                viewModel.detailMovie.observe(this, {
-//                    Log.d("DATA MOVIE DETAIL", it.toString())
-//                    displayContent(it.data)
-//                })
-//                viewModel.getDetailMovie(dataId.toInt()).observe(this, {
-//                    Log.d("DATA MOVIE DETAIL", it.toString())
-//                    displayContent(it)
-//                })
-//            } else if (dataType.equals(TV_TYPE, true)) {
-//                viewModel.getDetailTV(dataId.toInt()).observe(this, {
-//                    Log.d("DATA TV DETAIL", it.toString())
-//                    displayContent(it)
-//                })
-//            }
-//        }
+        if (intent.extras != null) {
+            if (dataType.equals(MOVIE_TYPE, true)) {
+                viewModel.setData(dataId.toInt(), MOVIE_TYPE)
+                viewModel.detailMovie().observe(this, {
+                    when (it.status) {
+                        Status.SUCCESS -> {
+                            if (it.data != null) {
+                                displayContentMovie(it.data)
+                            }
+                        }
+                        Status.ERROR -> Log.d("ERROR", it.message.toString())
+                        Status.LOADING -> Log.d("LOADING", "LOADING MULU")
+                    }
+                })
+            } else if (dataType.equals(TV_TYPE, true)) {
+                viewModel.setData(dataId.toInt(), TV_TYPE)
+                viewModel.detailTV().observe(this, {
+                    when (it.status) {
+                        Status.SUCCESS -> {
+                            if (it.data != null) {
+                                displayContentTV(it.data)
+                            }
+                        }
+                        Status.ERROR -> Log.d("ERROR", it.message.toString())
+                        Status.LOADING -> Log.d("LOADING", "LOADING MULU")
+                    }
+                })
+            }
+        }
 
     }
 
-    private fun displayContent(data: DataEntity) {
+    private fun displayContentMovie(data: MovieEntity) {
+        Glide.with(applicationContext).load(IMAGE_API_ENDPOINT + data.imgPoster).apply(
+            RequestOptions.placeholderOf(R.drawable.ic_loading_black)
+                .error(R.drawable.ic_error_image)
+        ).apply(RequestOptions().override(700, 700)).into(activityDetailBinding.imageItem)
+
+        activityDetailBinding.textTitle.text = data.title
+        activityDetailBinding.textRatingFilm.text = data.ratingFilm
+        activityDetailBinding.textGenre.text = when (data.genre?.isNotEmpty()) {
+            true -> data.genre
+            else -> getString(R.string.no_genres)
+        }
+
+        val tempRatingFor = when (data.ratingFor?.isNotEmpty()) {
+            true -> data.ratingFor.toString()
+            else -> getString(R.string.dashes)
+        }
+        val tempPlayedHour = when (data.playedHour?.isNotEmpty()) {
+            true -> data.playedHour.toString()
+            else -> getString(R.string.dashes)
+        }
+        activityDetailBinding.textRatingHour.text =
+            getString(R.string.rating_hour, tempRatingFor, tempPlayedHour)
+
+        activityDetailBinding.textDate.text = when (data.releasedYear?.isNotEmpty()) {
+            true -> data.releasedYear
+            else -> getString(R.string.dashes)
+        }
+
+        activityDetailBinding.textDescription.text = when (data.description?.isNotEmpty()) {
+            true -> data.description
+            else -> getString(R.string.no_description)
+        }
+    }
+
+    private fun displayContentTV(data: TVEntity) {
         Glide.with(applicationContext).load(IMAGE_API_ENDPOINT + data.imgPoster).apply(
             RequestOptions.placeholderOf(R.drawable.ic_loading_black)
                 .error(R.drawable.ic_error_image)
