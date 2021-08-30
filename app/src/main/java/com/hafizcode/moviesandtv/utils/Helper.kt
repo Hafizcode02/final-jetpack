@@ -28,7 +28,10 @@ object Helper {
     fun convertDate(dateText: String): String {
         val parser = SimpleDateFormat("yyyy-mm-dd")
         val formatter = SimpleDateFormat("dd MMMM yyyy")
-        return formatter.format(parser.parse(dateText))
+        if (dateText != "null") {
+            return formatter.format(parser.parse(dateText))
+        }
+        return ""
     }
 
     fun setImageWithGlide(context: Context, imagePath: String, imageView: ImageView) {
