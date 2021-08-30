@@ -14,4 +14,5 @@ data class DataEntity(
     var ratingFilm: String? = null,
     var playedHour: String? = null,
     var imgPoster: String,
+    var bookmarked: Boolean = false
 ) : Parcelable

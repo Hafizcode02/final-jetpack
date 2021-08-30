@@ -6,6 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.hafizcode.moviesandtv.data.entity.MovieEntity
 import com.hafizcode.moviesandtv.data.entity.TVEntity
+import java.util.concurrent.Executors
 
 @Database(
     entities = [MovieEntity::class, TVEntity::class],
@@ -25,9 +26,15 @@ abstract class MovieDatabase : RoomDatabase() {
                     context.applicationContext,
                     MovieDatabase::class.java,
                     "movies.db"
-                ).build().apply {
-                    INSTANCE = this
-                }
+                ).setQueryCallback(
+                    { sqlQuery, bindArgs ->
+                        println("SQL QUERY : ${sqlQuery}, BIND ARGS : $bindArgs")
+                    },
+                    Executors.newSingleThreadExecutor(),
+                )
+                    .build().apply {
+                        INSTANCE = this
+                    }
             }
     }
 }

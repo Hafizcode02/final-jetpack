@@ -37,6 +37,9 @@ android {
             // release & debug is in project animators
             matchingFallbacks = ['release', 'debug']
         }
+        create("customDebugType") {
+            debuggable = true
+        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
