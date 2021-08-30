@@ -16,4 +16,5 @@
     <string name="dashes"> - </string>
     <string name="no_genres">No Genres</string>
     <string name="no_description">No Description</string>
+    <string name="favorite">Favorite</string>
 </resources>

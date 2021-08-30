@@ -114,7 +114,7 @@ class MovieRepository private constructor(
                     ratingFor = ratedForCertification,
                     ratingFilm = data.voteAverage.toString(),
                     playedHour = data.runtime?.let { convertMinutesToHour(it) },
-                    imgPoster = data.posterPath.toString()
+                    imgPoster = data.posterPath.toString(),
                 )
                 localDataSource.updateMovie(movie)
             }
@@ -175,7 +175,7 @@ class MovieRepository private constructor(
             }
 
             override fun shouldFetch(data: TVEntity?): Boolean {
-                return data != null && data.description == ""
+                return data != null && data.playedHour == ""
             }
 
             override fun createCall(): LiveData<ApiResponse<TVResponse>> {
@@ -208,6 +208,7 @@ class MovieRepository private constructor(
                     imgPoster = data.posterPath.toString()
                 )
                 localDataSource.updateTV(tv)
+
             }
 
         }.asLiveData()
