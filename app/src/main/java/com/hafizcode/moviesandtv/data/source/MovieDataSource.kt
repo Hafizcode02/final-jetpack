@@ -1,7 +1,6 @@
 package com.hafizcode.moviesandtv.data.source
 
 import androidx.lifecycle.LiveData
-import com.hafizcode.moviesandtv.data.entity.DataEntity
 import com.hafizcode.moviesandtv.data.entity.MovieEntity
 import com.hafizcode.moviesandtv.data.entity.TVEntity
 import com.hafizcode.moviesandtv.vo.Resource
