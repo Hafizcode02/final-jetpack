@@ -19,7 +19,7 @@ class BookmarkSectionPagerAdapter(private val mContext: Context, fm: FragmentMan
     }
 
     override fun getCount(): Int {
-        return 2;
+        return 2
     }
 
     override fun getItem(position: Int): Fragment {

@@ -3,7 +3,6 @@ package com.hafizcode.moviesandtv.ui.home.content.helper
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.paging.PagedList
-import com.hafizcode.moviesandtv.data.entity.DataEntity
 import com.hafizcode.moviesandtv.data.entity.MovieEntity
 import com.hafizcode.moviesandtv.data.entity.TVEntity
 import com.hafizcode.moviesandtv.data.source.MovieRepository

@@ -58,6 +58,4 @@ class MovieBookmarkAdapter(private val callback: MovieBookmarkFragment) :
             holder.bind(bookmarkedMovies)
         }
     }
-
-    fun getSwipedData(swipedPosition: Int): MovieEntity? = getItem(swipedPosition)
 }
