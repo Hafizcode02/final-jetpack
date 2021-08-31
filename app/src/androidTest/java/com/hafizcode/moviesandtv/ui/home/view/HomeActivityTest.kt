@@ -66,6 +66,7 @@ class HomeActivityTest {
         onView(withId(R.id.text_genre)).check(matches(isDisplayed()))
         onView(withId(R.id.text_rating_hour)).check(matches(isDisplayed()))
         onView(withId(R.id.text_date)).check(matches(isDisplayed()))
+        onView(withId(R.id.action_fav)).perform(click())
 
         onView(withId(R.id.text_description)).perform(betterScrollTo())
         onView(withId(R.id.text_description)).check(matches(isDisplayed()))
@@ -106,6 +107,81 @@ class HomeActivityTest {
         onView(withId(R.id.text_genre)).check(matches(isDisplayed()))
         onView(withId(R.id.text_rating_hour)).check(matches(isDisplayed()))
         onView(withId(R.id.text_date)).check(matches(isDisplayed()))
+        onView(withId(R.id.action_fav)).perform(click())
+
+        onView(withId(R.id.text_description)).perform(betterScrollTo())
+        onView(withId(R.id.text_description)).check(matches(isDisplayed()))
+
+        pressBack()
+    }
+
+    @Test
+    fun loadBookmarkedMovies() {
+        onView(withId(R.id.action_to_fav)).perform(click())
+        onView(withText(R.string.film_tab)).perform(click())
+        onView(withId(R.id.rv_movie)).check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun loadDetailBookmarkedMovies() {
+        onView(withText(R.string.film_tab)).perform(click())
+        onView(withId(R.id.rv_movie)).check(matches(isDisplayed()))
+        onView(withId(R.id.rv_movie)).perform(
+            RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(
+                0
+            )
+        )
+        onView(withId(R.id.rv_movie)).perform(
+            RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(
+                0,
+                click()
+            )
+        )
+
+        onView(withId(R.id.image_item)).check(matches(isDisplayed()))
+        onView(withId(R.id.text_title)).check(matches(isDisplayed()))
+        onView(withId(R.id.text_rating_film)).check(matches(isDisplayed()))
+        onView(withId(R.id.text_genre)).check(matches(isDisplayed()))
+        onView(withId(R.id.text_rating_hour)).check(matches(isDisplayed()))
+        onView(withId(R.id.text_date)).check(matches(isDisplayed()))
+//        onView(withId(R.id.action_fav)).check(matches(R.drawable.ic_baseline_star_24))
+
+        onView(withId(R.id.text_description)).perform(betterScrollTo())
+        onView(withId(R.id.text_description)).check(matches(isDisplayed()))
+
+        pressBack()
+    }
+
+    @Test
+    fun loadBookmarkedTvs() {
+        onView(withId(R.id.action_to_fav)).perform(click())
+        onView(withText(R.string.tv_tab)).perform(click())
+        onView(withId(R.id.rv_tv)).check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun loadDetailBookmarkedTvs() {
+        onView(withText(R.string.tv_tab)).perform(click())
+        onView(withId(R.id.rv_tv)).check(matches(isDisplayed()))
+        onView(withId(R.id.rv_tv)).perform(
+            RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(
+                0
+            )
+        )
+        onView(withId(R.id.rv_tv)).perform(
+            RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(
+                0,
+                click()
+            )
+        )
+
+        onView(withId(R.id.image_item)).check(matches(isDisplayed()))
+        onView(withId(R.id.text_title)).check(matches(isDisplayed()))
+        onView(withId(R.id.text_rating_film)).check(matches(isDisplayed()))
+        onView(withId(R.id.text_genre)).check(matches(isDisplayed()))
+        onView(withId(R.id.text_rating_hour)).check(matches(isDisplayed()))
+        onView(withId(R.id.text_date)).check(matches(isDisplayed()))
+//        onView(withId(R.id.action_fav)).check(matches(R.drawable.ic_baseline_star_24))
 
         onView(withId(R.id.text_description)).perform(betterScrollTo())
         onView(withId(R.id.text_description)).check(matches(isDisplayed()))
