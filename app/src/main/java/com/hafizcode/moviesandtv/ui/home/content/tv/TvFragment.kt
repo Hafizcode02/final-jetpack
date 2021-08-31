@@ -1,6 +1,5 @@
 package com.hafizcode.moviesandtv.ui.home.content.tv
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,17 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import com.hafizcode.moviesandtv.data.entity.DataEntity
-import com.hafizcode.moviesandtv.data.entity.MovieEntity
-import com.hafizcode.moviesandtv.data.entity.TVEntity
 import com.hafizcode.moviesandtv.databinding.FragmentTvBinding
-import com.hafizcode.moviesandtv.ui.detail.DetailActivity
-import com.hafizcode.moviesandtv.ui.home.content.helper.DataCallback
 import com.hafizcode.moviesandtv.ui.home.content.helper.DataViewModel
-import com.hafizcode.moviesandtv.utils.Helper.TV_TYPE
 import com.hafizcode.moviesandtv.viewmodel.ViewModelFactory
 
-class TvFragment : Fragment(), DataCallback {
+class TvFragment : Fragment() {
 
     private lateinit var fragmentTvBinding: FragmentTvBinding
     private lateinit var viewModel: DataViewModel
@@ -37,7 +30,7 @@ class TvFragment : Fragment(), DataCallback {
         fragmentTvBinding.rvTv.apply {
             layoutManager = GridLayoutManager(context, 2)
             setHasFixedSize(true)
-            adapter = TvAdapter(this@TvFragment)
+            adapter = TvAdapter()
         }
 
         val factory = ViewModelFactory.getInstance(requireActivity())
@@ -49,18 +42,11 @@ class TvFragment : Fragment(), DataCallback {
             fragmentTvBinding.rvTv.adapter?.let { adapter ->
                 when (adapter) {
                     is TvAdapter -> {
-                        adapter.run { setTV(listTV.data) }
+                        adapter.run { submitList(listTV.data) }
                     }
                 }
             }
         })
 
-    }
-
-    override fun onItemClicked(dataMovie: MovieEntity?, dataTV: TVEntity?) {
-        val intent = Intent(context, DetailActivity::class.java)
-        intent.putExtra(DetailActivity.DATA_ID, dataTV?.id)
-        intent.putExtra(DetailActivity.DATA_TYPE, TV_TYPE)
-        startActivity(intent)
     }
 }

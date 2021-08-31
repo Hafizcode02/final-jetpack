@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hafizcode.moviesandtv.data.entity.MovieEntity
 import com.hafizcode.moviesandtv.data.entity.TVEntity
@@ -15,7 +14,6 @@ import com.hafizcode.moviesandtv.databinding.FragmentTvBinding
 import com.hafizcode.moviesandtv.ui.detail.DetailActivity
 import com.hafizcode.moviesandtv.ui.home.content.helper.DataCallback
 import com.hafizcode.moviesandtv.ui.home.content.helper.DataViewModel
-import com.hafizcode.moviesandtv.ui.home.content.tv.TvAdapter
 import com.hafizcode.moviesandtv.utils.Helper
 import com.hafizcode.moviesandtv.viewmodel.ViewModelFactory
 
@@ -50,7 +48,7 @@ class TVBookmarkFragment : Fragment(), DataCallback {
             fragmentTvBinding.rvTv.adapter?.let { adapter ->
                 when (adapter) {
                     is TVBookmarkAdapter -> {
-                        adapter.run { setBookmarkedTvs(listTV) }
+                        adapter.run { submitList(listTV) }
                     }
                 }
             }

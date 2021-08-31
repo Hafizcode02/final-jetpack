@@ -2,21 +2,26 @@ package com.hafizcode.moviesandtv.ui.bookmark.content.tv
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagedListAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.hafizcode.moviesandtv.data.entity.TVEntity
 import com.hafizcode.moviesandtv.databinding.ItemRowBinding
 import com.hafizcode.moviesandtv.utils.Helper
 
 class TVBookmarkAdapter(private val callback: TVBookmarkFragment) :
-    RecyclerView.Adapter<TVBookmarkAdapter.TvViewHolder>() {
+    PagedListAdapter<TVEntity, TVBookmarkAdapter.TvViewHolder>(DIFF_CALLBACK) {
 
-    private val listBookmarkedTvs = ArrayList<TVEntity>()
+    companion object {
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<TVEntity>() {
+            override fun areItemsTheSame(oldItem: TVEntity, newItem: TVEntity): Boolean {
+                return oldItem.id == newItem.id
+            }
 
-    fun setBookmarkedTvs(tvs: List<TVEntity>?) {
-        if (tvs == null) return
-        this.listBookmarkedTvs.clear()
-        this.listBookmarkedTvs.addAll(tvs)
-        notifyDataSetChanged()
+            override fun areContentsTheSame(oldItem: TVEntity, newItem: TVEntity): Boolean {
+                return oldItem == newItem
+            }
+        }
     }
 
     inner class TvViewHolder(private val binding: ItemRowBinding) :
@@ -46,11 +51,10 @@ class TVBookmarkAdapter(private val callback: TVBookmarkFragment) :
     }
 
     override fun onBindViewHolder(holder: TVBookmarkAdapter.TvViewHolder, position: Int) {
-        val bookmarkedTvs = listBookmarkedTvs[position]
-        holder.bind(bookmarkedTvs)
+        val bookmarkedTvs = getItem(position)
+        if (bookmarkedTvs != null) {
+            holder.bind(bookmarkedTvs)
+        }
     }
 
-    override fun getItemCount(): Int {
-        return listBookmarkedTvs.size
-    }
 }

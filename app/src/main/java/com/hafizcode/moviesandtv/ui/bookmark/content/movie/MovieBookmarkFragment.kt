@@ -47,7 +47,7 @@ class MovieBookmarkFragment : Fragment(), DataCallback {
         viewModel.getBookmarkedMovies().observe(viewLifecycleOwner, { listMovie ->
             fragmentMovieBinding.rvMovie.adapter?.let { adapter ->
                 when (adapter) {
-                    is MovieBookmarkAdapter -> adapter.setBookmarkedMovies(listMovie)
+                    is MovieBookmarkAdapter -> adapter.submitList(listMovie)
                 }
             }
         })

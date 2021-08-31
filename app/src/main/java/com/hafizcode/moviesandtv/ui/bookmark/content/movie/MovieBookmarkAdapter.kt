@@ -2,21 +2,28 @@ package com.hafizcode.moviesandtv.ui.bookmark.content.movie
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagedListAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.hafizcode.moviesandtv.data.entity.MovieEntity
 import com.hafizcode.moviesandtv.databinding.ItemRowBinding
 import com.hafizcode.moviesandtv.utils.Helper
 
 class MovieBookmarkAdapter(private val callback: MovieBookmarkFragment) :
-    RecyclerView.Adapter<MovieBookmarkAdapter.MovieViewHolder>() {
+    PagedListAdapter<MovieEntity, MovieBookmarkAdapter.MovieViewHolder>(
+        DIFF_CALLBACK
+    ) {
 
-    private val listBookmarkedMovies = ArrayList<MovieEntity>()
+    companion object {
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<MovieEntity>() {
+            override fun areItemsTheSame(oldItem: MovieEntity, newItem: MovieEntity): Boolean {
+                return oldItem.id == newItem.id
+            }
 
-    fun setBookmarkedMovies(movies: List<MovieEntity>?) {
-        if (movies == null) return
-        this.listBookmarkedMovies.clear()
-        this.listBookmarkedMovies.addAll(movies)
-        notifyDataSetChanged()
+            override fun areContentsTheSame(oldItem: MovieEntity, newItem: MovieEntity): Boolean {
+                return oldItem == newItem
+            }
+        }
     }
 
     inner class MovieViewHolder(private val binding: ItemRowBinding) :
@@ -46,11 +53,11 @@ class MovieBookmarkAdapter(private val callback: MovieBookmarkFragment) :
     }
 
     override fun onBindViewHolder(holder: MovieBookmarkAdapter.MovieViewHolder, position: Int) {
-        val bookmarkedMovies = listBookmarkedMovies[position]
-        holder.bind(bookmarkedMovies)
+        val bookmarkedMovies = getItem(position)
+        if (bookmarkedMovies != null) {
+            holder.bind(bookmarkedMovies)
+        }
     }
 
-    override fun getItemCount(): Int {
-        return listBookmarkedMovies.size
-    }
+    fun getSwipedData(swipedPosition: Int): MovieEntity? = getItem(swipedPosition)
 }

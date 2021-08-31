@@ -1,6 +1,5 @@
 package com.hafizcode.moviesandtv.ui.home.content.movie
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,17 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import com.hafizcode.moviesandtv.data.entity.DataEntity
-import com.hafizcode.moviesandtv.data.entity.MovieEntity
-import com.hafizcode.moviesandtv.data.entity.TVEntity
 import com.hafizcode.moviesandtv.databinding.FragmentMovieBinding
-import com.hafizcode.moviesandtv.ui.detail.DetailActivity
-import com.hafizcode.moviesandtv.ui.home.content.helper.DataCallback
 import com.hafizcode.moviesandtv.ui.home.content.helper.DataViewModel
-import com.hafizcode.moviesandtv.utils.Helper.MOVIE_TYPE
 import com.hafizcode.moviesandtv.viewmodel.ViewModelFactory
 
-class MovieFragment : Fragment(), DataCallback {
+class MovieFragment : Fragment() {
 
     private lateinit var fragmentMovieBinding: FragmentMovieBinding
     private lateinit var viewModel: DataViewModel
@@ -37,7 +30,7 @@ class MovieFragment : Fragment(), DataCallback {
         fragmentMovieBinding.rvMovie.apply {
             layoutManager = GridLayoutManager(context, 2)
             setHasFixedSize(true)
-            adapter = MovieAdapter(this@MovieFragment)
+            adapter = MovieAdapter()
         }
 
         val factory = ViewModelFactory.getInstance(requireActivity())
@@ -48,17 +41,10 @@ class MovieFragment : Fragment(), DataCallback {
         viewModel.getMovies().observe(viewLifecycleOwner, { listMovie ->
             fragmentMovieBinding.rvMovie.adapter?.let { adapter ->
                 when (adapter) {
-                    is MovieAdapter -> adapter.setMovies(listMovie.data)
+                    is MovieAdapter -> adapter.submitList(listMovie.data)
                 }
             }
         })
-    }
-
-    override fun onItemClicked(dataMovie: MovieEntity?, dataTV: TVEntity?) {
-        val intent = Intent(context, DetailActivity::class.java)
-        intent.putExtra(DetailActivity.DATA_ID, dataMovie?.id)
-        intent.putExtra(DetailActivity.DATA_TYPE, MOVIE_TYPE)
-        startActivity(intent)
     }
 
 }

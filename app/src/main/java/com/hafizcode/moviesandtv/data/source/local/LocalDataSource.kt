@@ -1,19 +1,21 @@
 package com.hafizcode.moviesandtv.data.source.local
 
 import androidx.lifecycle.LiveData
+import androidx.paging.DataSource
 import com.hafizcode.moviesandtv.data.entity.MovieEntity
 import com.hafizcode.moviesandtv.data.entity.TVEntity
 import com.hafizcode.moviesandtv.data.source.local.room.MovieDao
 
 class LocalDataSource private constructor(private val mMovieDao: MovieDao) {
 
-    fun getAllMovies(): LiveData<List<MovieEntity>> = mMovieDao.getMovies()
+    fun getAllMovies(): DataSource.Factory<Int, MovieEntity> = mMovieDao.getMovies()
 
-    fun getAllTvs(): LiveData<List<TVEntity>> = mMovieDao.getTVs()
+    fun getAllTvs(): DataSource.Factory<Int, TVEntity> = mMovieDao.getTVs()
 
-    fun getBookmarkedMovies(): LiveData<List<MovieEntity>> = mMovieDao.getBookmarkedMovies()
+    fun getBookmarkedMovies(): DataSource.Factory<Int, MovieEntity> =
+        mMovieDao.getBookmarkedMovies()
 
-    fun getBookmarkedTVs(): LiveData<List<TVEntity>> = mMovieDao.getBookmarkedTVs()
+    fun getBookmarkedTVs(): DataSource.Factory<Int, TVEntity> = mMovieDao.getBookmarkedTVs()
 
     fun getDetailMovie(id: String): LiveData<MovieEntity> = mMovieDao.getDetailMovie(id)
 

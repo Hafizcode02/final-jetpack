@@ -1,13 +1,10 @@
 package com.hafizcode.moviesandtv.ui.bookmark.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.lifecycle.ViewModel
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.hafizcode.moviesandtv.R
 import com.hafizcode.moviesandtv.databinding.ActivityBookmarkBinding
 import com.hafizcode.moviesandtv.ui.home.content.helper.DataViewModel
-import com.hafizcode.moviesandtv.ui.home.view.SectionPagerAdapter
 import com.hafizcode.moviesandtv.viewmodel.ViewModelFactory
 
 class BookmarkActivity : AppCompatActivity() {

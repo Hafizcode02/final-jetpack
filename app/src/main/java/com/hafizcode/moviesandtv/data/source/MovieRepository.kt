@@ -1,7 +1,8 @@
 package com.hafizcode.moviesandtv.data.source
 
-import android.util.Log
 import androidx.lifecycle.LiveData
+import androidx.paging.LivePagedListBuilder
+import androidx.paging.PagedList
 import com.hafizcode.moviesandtv.data.entity.MovieEntity
 import com.hafizcode.moviesandtv.data.entity.TVEntity
 import com.hafizcode.moviesandtv.data.source.local.LocalDataSource
@@ -38,18 +39,23 @@ class MovieRepository private constructor(
             }
     }
 
-    override fun getMovies(): LiveData<Resource<List<MovieEntity>>> {
-        return object : NetworkBoundResource<List<MovieEntity>, List<MovieResponse>>(appExecutors) {
-            override fun loadFromDB(): LiveData<List<MovieEntity>> {
-                return localDataSource.getAllMovies()
+    override fun getMovies(): LiveData<Resource<PagedList<MovieEntity>>> {
+        return object :
+            NetworkBoundResource<PagedList<MovieEntity>, List<MovieResponse>>(appExecutors) {
+            override fun loadFromDB(): LiveData<PagedList<MovieEntity>> {
+                val config = PagedList.Config.Builder()
+                    .setEnablePlaceholders(false)
+                    .setInitialLoadSizeHint(4)
+                    .setPageSize(4)
+                    .build()
+                return LivePagedListBuilder(localDataSource.getAllMovies(), config).build()
             }
 
-            override fun shouldFetch(data: List<MovieEntity>?): Boolean {
+            override fun shouldFetch(data: PagedList<MovieEntity>?): Boolean {
                 return data == null || data.isEmpty()
             }
 
             override fun createCall(): LiveData<ApiResponse<List<MovieResponse>>> {
-                Log.d("TEST", "ISWORKHERE")
                 return remoteDataSource.getMovies()
             }
 
@@ -121,13 +127,18 @@ class MovieRepository private constructor(
         }.asLiveData()
     }
 
-    override fun getTVs(): LiveData<Resource<List<TVEntity>>> {
-        return object : NetworkBoundResource<List<TVEntity>, List<TVResponse>>(appExecutors) {
-            override fun loadFromDB(): LiveData<List<TVEntity>> {
-                return localDataSource.getAllTvs()
+    override fun getTVs(): LiveData<Resource<PagedList<TVEntity>>> {
+        return object : NetworkBoundResource<PagedList<TVEntity>, List<TVResponse>>(appExecutors) {
+            override fun loadFromDB(): LiveData<PagedList<TVEntity>> {
+                val config = PagedList.Config.Builder()
+                    .setEnablePlaceholders(false)
+                    .setInitialLoadSizeHint(4)
+                    .setPageSize(4)
+                    .build()
+                return LivePagedListBuilder(localDataSource.getAllTvs(), config).build()
             }
 
-            override fun shouldFetch(data: List<TVEntity>?): Boolean {
+            override fun shouldFetch(data: PagedList<TVEntity>?): Boolean {
                 return data == null || data.isEmpty()
             }
 
@@ -214,12 +225,22 @@ class MovieRepository private constructor(
         }.asLiveData()
     }
 
-    override fun getBookmarkedMovies(): LiveData<List<MovieEntity>> {
-        return localDataSource.getBookmarkedMovies()
+    override fun getBookmarkedMovies(): LiveData<PagedList<MovieEntity>> {
+        val config = PagedList.Config.Builder()
+            .setEnablePlaceholders(false)
+            .setInitialLoadSizeHint(4)
+            .setPageSize(4)
+            .build()
+        return LivePagedListBuilder(localDataSource.getBookmarkedMovies(), config).build()
     }
 
-    override fun getBookmarkedTVs(): LiveData<List<TVEntity>> {
-        return localDataSource.getBookmarkedTVs()
+    override fun getBookmarkedTVs(): LiveData<PagedList<TVEntity>> {
+        val config = PagedList.Config.Builder()
+            .setEnablePlaceholders(false)
+            .setInitialLoadSizeHint(4)
+            .setPageSize(4)
+            .build()
+        return LivePagedListBuilder(localDataSource.getBookmarkedTVs(), config).build()
     }
 
     override fun setBookmarkedMovies(movie: MovieEntity, state: Boolean) {
