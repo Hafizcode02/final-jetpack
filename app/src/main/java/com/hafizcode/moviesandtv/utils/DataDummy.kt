@@ -19,7 +19,8 @@ object DataDummy {
                 "13+",
                 "8.3",
                 "2h 29m",
-                R.drawable.m_poster_infinity_war.toString()
+                R.drawable.m_poster_infinity_war.toString(),
+                false
             )
         )
         movies.add(
@@ -32,7 +33,8 @@ object DataDummy {
                 "17+",
                 "6.6",
                 "2h 4m",
-                R.drawable.m_poster_marry_queen.toString()
+                R.drawable.m_poster_marry_queen.toString(),
+                false
             )
         )
         movies.add(
@@ -45,7 +47,8 @@ object DataDummy {
                 "13+",
                 "6.0",
                 "1h 47m",
-                R.drawable.m_poster_master_z.toString()
+                R.drawable.m_poster_master_z.toString(),
+                false
             )
         )
         movies.add(
@@ -58,7 +61,8 @@ object DataDummy {
                 "13+",
                 "6.1",
                 "2h 9m",
-                R.drawable.m_poster_mortal_engines.toString()
+                R.drawable.m_poster_mortal_engines.toString(),
+                false
             )
         )
         movies.add(
@@ -71,7 +75,8 @@ object DataDummy {
                 "17+",
                 "6.7",
                 "1h 5m",
-                R.drawable.m_poster_overlord.toString()
+                R.drawable.m_poster_overlord.toString(),
+                false
             )
         )
         movies.add(
@@ -84,7 +89,8 @@ object DataDummy {
                 "-",
                 "7.2",
                 "1h 52m",
-                R.drawable.m_poster_ralph.toString()
+                R.drawable.m_poster_ralph.toString(),
+                false
             )
         )
         movies.add(
@@ -97,7 +103,8 @@ object DataDummy {
                 "13+",
                 "5.9",
                 "1h 56m",
-                R.drawable.m_poster_robin_hood.toString()
+                R.drawable.m_poster_robin_hood.toString(),
+                false
             )
         )
         movies.add(
@@ -110,7 +117,8 @@ object DataDummy {
                 "17+",
                 "5.4",
                 "1h 42m",
-                R.drawable.m_poster_serenity.toString()
+                R.drawable.m_poster_serenity.toString(),
+                false
             )
         )
         movies.add(
@@ -123,7 +131,8 @@ object DataDummy {
                 "-",
                 "8.4",
                 "1h 57m",
-                R.drawable.m_poster_spiderman.toString()
+                R.drawable.m_poster_spiderman.toString(),
+                false
             )
         )
         movies.add(
@@ -136,7 +145,8 @@ object DataDummy {
                 "12+",
                 "6.9",
                 "2h 19m",
-                R.drawable.m_poster_t34.toString()
+                R.drawable.m_poster_t34.toString(),
+                false
             )
         )
 
@@ -156,7 +166,8 @@ object DataDummy {
                 "-",
                 "6.6",
                 "55m",
-                R.drawable.tv_poster_iron_fist.toString()
+                R.drawable.tv_poster_iron_fist.toString(),
+                false
             )
         )
         tv.add(
@@ -169,7 +180,8 @@ object DataDummy {
                 "14+",
                 "8.6",
                 "25m",
-                R.drawable.tv_poster_naruto_shipudden.toString()
+                R.drawable.tv_poster_naruto_shipudden.toString(),
+                false
             )
         )
         tv.add(
@@ -182,7 +194,8 @@ object DataDummy {
                 "14+",
                 "7.4",
                 "45m",
-                R.drawable.tv_poster_ncis.toString()
+                R.drawable.tv_poster_ncis.toString(),
+                false
             )
         )
         tv.add(
@@ -195,7 +208,8 @@ object DataDummy {
                 "14+",
                 "8.6",
                 "45m",
-                R.drawable.tv_poster_riverdale.toString()
+                R.drawable.tv_poster_riverdale.toString(),
+                false
             )
         )
         tv.add(
@@ -208,7 +222,8 @@ object DataDummy {
                 "17+",
                 "8.0",
                 "57m",
-                R.drawable.tv_poster_shameless.toString()
+                R.drawable.tv_poster_shameless.toString(),
+                false
             )
         )
         tv.add(
@@ -221,7 +236,8 @@ object DataDummy {
                 "14+",
                 "7.3",
                 "42m",
-                R.drawable.tv_poster_supergirl.toString()
+                R.drawable.tv_poster_supergirl.toString(),
+                false
             )
         )
         tv.add(
@@ -234,7 +250,8 @@ object DataDummy {
                 "14+",
                 "8.2",
                 "52m",
-                R.drawable.tv_poster_supernatural.toString()
+                R.drawable.tv_poster_supernatural.toString(),
+                false
             )
         )
         tv.add(
@@ -247,7 +264,8 @@ object DataDummy {
                 "-",
                 "7.8",
                 "22m",
-                R.drawable.tv_poster_the_simpson.toString()
+                R.drawable.tv_poster_the_simpson.toString(),
+                false
             )
         )
         tv.add(
@@ -260,7 +278,8 @@ object DataDummy {
                 "17+",
                 "8.7",
                 "55m",
-                R.drawable.tv_poster_the_umbrella.toString()
+                R.drawable.tv_poster_the_umbrella.toString(),
+                false
             )
         )
         tv.add(
@@ -273,7 +292,8 @@ object DataDummy {
                 "17+",
                 "8.1",
                 "42m",
-                R.drawable.tv_poster_the_walking_dead.toString()
+                R.drawable.tv_poster_the_walking_dead.toString(),
+                false
             )
         )
 
