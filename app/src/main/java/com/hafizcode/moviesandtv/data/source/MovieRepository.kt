@@ -85,14 +85,6 @@ class MovieRepository private constructor(
         ratedForCertification = ""
         genresData = ""
 
-        val dataRated = remoteDataSource.getMovieDetailRatedFor(movieId)
-        dataRated.value?.body?.results?.forEach {
-            if (it?.iso31661.equals("RU", true)) {
-                ratedForCertification =
-                    it?.releaseDates?.get(0)?.certification.toString()
-            }
-        }
-
         return object : NetworkBoundResource<MovieEntity, MovieResponse>(appExecutors) {
             override fun loadFromDB(): LiveData<MovieEntity> {
                 return localDataSource.getDetailMovie(movieId.toString())
@@ -103,6 +95,13 @@ class MovieRepository private constructor(
             }
 
             override fun createCall(): LiveData<ApiResponse<MovieResponse>> {
+                val dataRated = remoteDataSource.getMovieDetailRatedFor(movieId)
+                dataRated.value?.body?.results?.forEach {
+                    if (it?.iso31661.equals("RU", true)) {
+                        ratedForCertification =
+                            it?.releaseDates?.get(0)?.certification.toString()
+                    }
+                }
                 return remoteDataSource.getMovieDetail(movieId)
             }
 
@@ -172,14 +171,6 @@ class MovieRepository private constructor(
         ratedForCertification = ""
         genresData = ""
 
-        val dataRated = remoteDataSource.getTVDetailRatedFor(tvId)
-        dataRated.value?.body?.results?.forEach {
-            if (it?.iso31661.equals("RU", true)) {
-                ratedForCertification =
-                    it?.rating.toString()
-            }
-        }
-
         return object : NetworkBoundResource<TVEntity, TVResponse>(appExecutors) {
             override fun loadFromDB(): LiveData<TVEntity> {
                 return localDataSource.getDetailTVs(tvId.toString())
@@ -190,6 +181,13 @@ class MovieRepository private constructor(
             }
 
             override fun createCall(): LiveData<ApiResponse<TVResponse>> {
+                val dataRated = remoteDataSource.getTVDetailRatedFor(tvId)
+                dataRated.value?.body?.results?.forEach {
+                    if (it?.iso31661.equals("RU", true)) {
+                        ratedForCertification =
+                            it?.rating.toString()
+                    }
+                }
                 return remoteDataSource.getTVDetail(tvId)
             }
 
