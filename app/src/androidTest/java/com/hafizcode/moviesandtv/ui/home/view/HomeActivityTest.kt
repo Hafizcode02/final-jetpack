@@ -66,6 +66,7 @@ class HomeActivityTest {
         onView(withId(R.id.text_genre)).check(matches(isDisplayed()))
         onView(withId(R.id.text_rating_hour)).check(matches(isDisplayed()))
         onView(withId(R.id.text_date)).check(matches(isDisplayed()))
+        // Perform Bookmark
         onView(withId(R.id.action_fav)).perform(click())
 
         onView(withId(R.id.text_description)).perform(betterScrollTo())
@@ -107,6 +108,7 @@ class HomeActivityTest {
         onView(withId(R.id.text_genre)).check(matches(isDisplayed()))
         onView(withId(R.id.text_rating_hour)).check(matches(isDisplayed()))
         onView(withId(R.id.text_date)).check(matches(isDisplayed()))
+        // Perform Bookmark
         onView(withId(R.id.action_fav)).perform(click())
 
         onView(withId(R.id.text_description)).perform(betterScrollTo())
@@ -144,7 +146,8 @@ class HomeActivityTest {
         onView(withId(R.id.text_genre)).check(matches(isDisplayed()))
         onView(withId(R.id.text_rating_hour)).check(matches(isDisplayed()))
         onView(withId(R.id.text_date)).check(matches(isDisplayed()))
-//        onView(withId(R.id.action_fav)).check(matches(R.drawable.ic_baseline_star_24))
+        // Perform UnBookmark
+        onView(withId(R.id.action_fav)).perform(click())
 
         onView(withId(R.id.text_description)).perform(betterScrollTo())
         onView(withId(R.id.text_description)).check(matches(isDisplayed()))
@@ -181,7 +184,8 @@ class HomeActivityTest {
         onView(withId(R.id.text_genre)).check(matches(isDisplayed()))
         onView(withId(R.id.text_rating_hour)).check(matches(isDisplayed()))
         onView(withId(R.id.text_date)).check(matches(isDisplayed()))
-//        onView(withId(R.id.action_fav)).check(matches(R.drawable.ic_baseline_star_24))
+        // Perform UnBookmark
+        onView(withId(R.id.action_fav)).perform(click())
 
         onView(withId(R.id.text_description)).perform(betterScrollTo())
         onView(withId(R.id.text_description)).check(matches(isDisplayed()))
