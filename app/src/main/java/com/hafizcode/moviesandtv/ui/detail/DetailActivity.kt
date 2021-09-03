@@ -38,7 +38,7 @@ class DetailActivity : AppCompatActivity() {
         activityDetailBinding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(activityDetailBinding.root)
 
-        val dataId = intent.getStringExtra(DATA_ID)!!
+        val dataId = intent.getStringExtra(DATA_ID).orEmpty()
         dataType = intent.getStringExtra(DATA_TYPE)!!
 
         supportActionBar?.title =

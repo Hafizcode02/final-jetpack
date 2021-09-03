@@ -6,6 +6,7 @@ import com.hafizcode.moviesandtv.data.source.remote.response.ApiResponse
 import com.hafizcode.moviesandtv.data.source.remote.response.StatusResponse
 import com.hafizcode.moviesandtv.utils.AppExecutors
 import com.hafizcode.moviesandtv.vo.Resource
+import kotlinx.coroutines.runBlocking
 
 abstract class NetworkBoundResource<ResultType, RequestType>(private val mExecutors: AppExecutors) {
     private val result = MediatorLiveData<Resource<ResultType>>()
@@ -14,7 +15,7 @@ abstract class NetworkBoundResource<ResultType, RequestType>(private val mExecut
         result.value = Resource.loading(null)
 
         @Suppress("LeakingThis")
-        val dbSource = loadFromDB()
+        val dbSource = runBlocking { loadFromDB() }
 
         result.addSource(dbSource) { data ->
             result.removeSource(dbSource)

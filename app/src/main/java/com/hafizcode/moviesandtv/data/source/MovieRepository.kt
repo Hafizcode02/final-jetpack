@@ -99,7 +99,7 @@ class MovieRepository private constructor(
                 dataRated.value?.body?.results?.forEach {
                     if (it?.iso31661.equals("RU", true)) {
                         ratedForCertification =
-                            it?.releaseDates?.get(0)?.certification.toString()
+                            it?.releaseDates?.getOrNull(0)?.certification.toString()
                     }
                 }
                 return remoteDataSource.getMovieDetail(movieId)
